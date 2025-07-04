@@ -17,8 +17,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
+        DotEnvConfig dotEnvConfig = new DotEnvConfig();
         registry.addEndpoint("/chat")
-                .setAllowedOrigins("http://localhost:5173")
+                .setAllowedOrigins(dotEnvConfig.get("FRONT_END"))
                 .withSockJS();
     }
 }
